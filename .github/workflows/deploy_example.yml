@@ -33,6 +33,7 @@ jobs:
       - name: Build Flutter web app
         run: |
           cd example
+          flutter create . --platforms web
           flutter pub get
           flutter build web --release --base-href /legacy_timeline_scrubber/
 
