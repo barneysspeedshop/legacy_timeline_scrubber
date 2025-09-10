@@ -96,10 +96,8 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     if (displayDurationMs <= 0) return _DragType.none;
 
-    final double startX =
-        (widget.visibleStartDate.difference(displayStart).inMilliseconds / displayDurationMs) * width;
-    final double endX =
-        (widget.visibleEndDate.difference(displayStart).inMilliseconds / displayDurationMs) * width;
+    final double startX = (widget.visibleStartDate.difference(displayStart).inMilliseconds / displayDurationMs) * width;
+    final double endX = (widget.visibleEndDate.difference(displayStart).inMilliseconds / displayDurationMs) * width;
 
     const handleHitWidth = 20.0;
     if ((localPosition.dx - startX).abs() < handleHitWidth) {
@@ -314,7 +312,7 @@ class _ScrubberPainter extends CustomPainter {
       if (task.isOverlapIndicator) {
         taskPaint.color = theme.conflictBarColor;
       } else {
-        taskPaint.color = (task.color ?? theme.barColorPrimary).withValues(alpha:0.5);
+        taskPaint.color = (task.color ?? theme.barColorPrimary).withValues(alpha: 0.5);
       }
 
       canvas.drawRect(

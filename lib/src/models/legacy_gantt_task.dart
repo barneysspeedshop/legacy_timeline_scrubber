@@ -56,22 +56,23 @@ class LegacyGanttTask {
     CellBuilder? cellBuilder,
     Color? textColor,
     String? originalId,
-  }) => LegacyGanttTask(
-      id: id ?? this.id,
-      rowId: rowId ?? this.rowId,
-      start: start ?? this.start,
-      end: end ?? this.end,
-      name: name ?? this.name,
-      color: color ?? this.color,
-      stackIndex: stackIndex ?? this.stackIndex,
-      isSummary: isSummary ?? this.isSummary,
-      isTimeRangeHighlight: isTimeRangeHighlight ?? this.isTimeRangeHighlight,
-      isOverlapIndicator: isOverlapIndicator ?? this.isOverlapIndicator,
-      segments: segments ?? this.segments,
-      cellBuilder: cellBuilder ?? this.cellBuilder,
-      textColor: textColor ?? this.textColor,
-      originalId: originalId ?? this.originalId,
-    );
+  }) =>
+      LegacyGanttTask(
+        id: id ?? this.id,
+        rowId: rowId ?? this.rowId,
+        start: start ?? this.start,
+        end: end ?? this.end,
+        name: name ?? this.name,
+        color: color ?? this.color,
+        stackIndex: stackIndex ?? this.stackIndex,
+        isSummary: isSummary ?? this.isSummary,
+        isTimeRangeHighlight: isTimeRangeHighlight ?? this.isTimeRangeHighlight,
+        isOverlapIndicator: isOverlapIndicator ?? this.isOverlapIndicator,
+        segments: segments ?? this.segments,
+        cellBuilder: cellBuilder ?? this.cellBuilder,
+        textColor: textColor ?? this.textColor,
+        originalId: originalId ?? this.originalId,
+      );
 }
 
 @immutable

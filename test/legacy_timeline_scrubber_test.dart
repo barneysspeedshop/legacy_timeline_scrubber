@@ -28,21 +28,21 @@ void main() {
     await tester.pumpWidget(
       StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) => MaterialApp(
-            home: Scaffold(
-              body: LegacyGanttTimelineScrubber(
-                totalStartDate: DateTime(2023, 1, 1),
-                totalEndDate: DateTime(2023, 1, 31),
-                visibleStartDate: newStart,
-                visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
-                  setState(() {
-                    newStart = start;
-                    newEnd = end;
-                  });
-                },
-              ),
+          home: Scaffold(
+            body: LegacyGanttTimelineScrubber(
+              totalStartDate: DateTime(2023, 1, 1),
+              totalEndDate: DateTime(2023, 1, 31),
+              visibleStartDate: newStart,
+              visibleEndDate: newEnd,
+              onWindowChanged: (start, end) {
+                setState(() {
+                  newStart = start;
+                  newEnd = end;
+                });
+              },
             ),
           ),
+        ),
       ),
     );
 
@@ -65,21 +65,21 @@ void main() {
     await tester.pumpWidget(
       StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) => MaterialApp(
-            home: Scaffold(
-              body: LegacyGanttTimelineScrubber(
-                totalStartDate: DateTime(2023, 1, 1),
-                totalEndDate: DateTime(2023, 1, 31),
-                visibleStartDate: newStart,
-                visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
-                  setState(() {
-                    newStart = start;
-                    newEnd = end;
-                  });
-                },
-              ),
+          home: Scaffold(
+            body: LegacyGanttTimelineScrubber(
+              totalStartDate: DateTime(2023, 1, 1),
+              totalEndDate: DateTime(2023, 1, 31),
+              visibleStartDate: newStart,
+              visibleEndDate: newEnd,
+              onWindowChanged: (start, end) {
+                setState(() {
+                  newStart = start;
+                  newEnd = end;
+                });
+              },
             ),
           ),
+        ),
       ),
     );
 
@@ -102,21 +102,21 @@ void main() {
     await tester.pumpWidget(
       StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) => MaterialApp(
-            home: Scaffold(
-              body: LegacyGanttTimelineScrubber(
-                totalStartDate: DateTime(2023, 1, 1),
-                totalEndDate: DateTime(2023, 1, 31),
-                visibleStartDate: newStart,
-                visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
-                  setState(() {
-                    newStart = start;
-                    newEnd = end;
-                  });
-                },
-              ),
+          home: Scaffold(
+            body: LegacyGanttTimelineScrubber(
+              totalStartDate: DateTime(2023, 1, 1),
+              totalEndDate: DateTime(2023, 1, 31),
+              visibleStartDate: newStart,
+              visibleEndDate: newEnd,
+              onWindowChanged: (start, end) {
+                setState(() {
+                  newStart = start;
+                  newEnd = end;
+                });
+              },
             ),
           ),
+        ),
       ),
     );
 
@@ -140,21 +140,21 @@ void main() {
     await tester.pumpWidget(
       StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) => MaterialApp(
-            home: Scaffold(
-              body: LegacyGanttTimelineScrubber(
-                totalStartDate: DateTime(2023, 1, 1),
-                totalEndDate: DateTime(2023, 1, 31),
-                visibleStartDate: newStart,
-                visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
-                  setState(() {
-                    newStart = start;
-                    newEnd = end;
-                  });
-                },
-              ),
+          home: Scaffold(
+            body: LegacyGanttTimelineScrubber(
+              totalStartDate: DateTime(2023, 1, 1),
+              totalEndDate: DateTime(2023, 1, 31),
+              visibleStartDate: newStart,
+              visibleEndDate: newEnd,
+              onWindowChanged: (start, end) {
+                setState(() {
+                  newStart = start;
+                  newEnd = end;
+                });
+              },
             ),
           ),
+        ),
       ),
     );
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:legacy_timeline_scrubber/legacy_timeline_scrubber.dart';
 
@@ -19,8 +18,7 @@ class TimelineViewModel extends ChangeNotifier {
   List<LegacyGanttTask> get tasks => _tasks;
   bool get useCustomTheme => _useCustomTheme;
 
-  LegacyGanttTheme get theme =>
-      _useCustomTheme ? _customTheme : _defaultTheme;
+  LegacyGanttTheme get theme => _useCustomTheme ? _customTheme : _defaultTheme;
 
   TimelineViewModel() {
     final now = DateTime.now();
