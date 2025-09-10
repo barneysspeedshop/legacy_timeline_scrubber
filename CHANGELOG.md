@@ -1,3 +1,7 @@
+## 1.0.2
+
+* **FIX**: Optimize example gif size
+
 ## 1.0.1
 
 * **FIX**: Add dartdoc
