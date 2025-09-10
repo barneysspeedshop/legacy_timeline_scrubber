@@ -1,0 +1,13 @@
+# Files and directories to ignore when publishing the package.
+.idea/
+.dart_tool/
+.metadata
+.packages
+build/
+*.iml
+example/ios
+example/linux
+example/macos
+example/android
+example/windows
+example/web
