@@ -1,6 +1,6 @@
 name: legacy_timeline_scrubber
 description: "A highly customizable timeline scrubber widget for Flutter, designed for intuitive navigation through time-based data. Ideal for video players, audio editors, and gantt charts."
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/barneysspeedshop/legacy_timeline_scrubber
 repository: https://github.com/barneysspeedshop/legacy_timeline_scrubber
 screenshots:
@@ -16,6 +16,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  mocktail: any
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0

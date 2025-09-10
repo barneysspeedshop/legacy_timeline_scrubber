@@ -1,3 +1,7 @@
+## 1.0.1
+
+* **FIX**: Add dartdoc
+
 ## 1.0.0
 
 * Initial release of the legacy_timeline_scrubber package.

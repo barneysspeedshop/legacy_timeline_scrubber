@@ -60,7 +60,7 @@ class TimelineViewModel extends ChangeNotifier {
       textColor: Colors.white,
       backgroundColor: Colors.grey.shade800,
       scrubberBackgroundColor: Colors.grey.shade900,
-      scrubberWindowColor: Colors.red.withValues(alpha: 0.2),
+      scrubberWindowColor: Colors.red.withValues(alpha:0.2),
       scrubberWindowBorderColor: Colors.red,
     );
   }

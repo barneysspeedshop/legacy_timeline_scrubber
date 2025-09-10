@@ -6,11 +6,15 @@
 
 A Flutter widget that provides a timeline scrubber for a Gantt chart. It allows you to visualize tasks and navigate through a timeline.
 
+---
+
 ## About the Name
 
 The name `legacy_timeline_scrubber` is a tribute to the package's author, Patrick Legacy. It does not imply that the package is outdated or unmaintained. In fact, it is a modern, actively developed, and highly capable solution for building production-ready Flutter applications.
 
-![example](example.gif)
+---
+
+![example](https://raw.githubusercontent.com/barneysspeedshop/legacy_timeline_scrubber/main/example.gif)
 
 ---
 
