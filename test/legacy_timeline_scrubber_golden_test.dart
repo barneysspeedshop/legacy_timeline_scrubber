@@ -102,7 +102,7 @@ void main() {
         textColor: Colors.black,
         backgroundColor: Colors.white,
         // Override scrubber-specific colors
-        scrubberWindowColor: Colors.orange.withOpacity(0.3),
+        scrubberWindowColor: Colors.orange.withValues(alpha:0.3),
         scrubberWindowBorderColor: Colors.deepOrange,
         conflictBarColor: Colors.black,
       );

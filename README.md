@@ -1,6 +1,7 @@
 # Legacy Timeline Scrubber
 
 [![Pub Version](https://img.shields.io/pub/v/legacy_timeline_scrubber)](https://pub.dev/packages/legacy_timeline_scrubber)
+[![Test Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)](#)
 [![Live Demo](https://img.shields.io/badge/live-demo-brightgreen)](https://barneysspeedshop.github.io/legacy_timeline_scrubber/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 

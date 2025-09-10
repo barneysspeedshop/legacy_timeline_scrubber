@@ -5,7 +5,7 @@ import 'package:legacy_timeline_scrubber/legacy_timeline_scrubber.dart';
 
 void main() {
   // Helper to calculate the display range, mirroring the logic in the widget.
-  (DateTime, DateTime) _calculateDisplayRange(DateTime totalStart, DateTime totalEnd, DateTime visibleStart,
+  (DateTime, DateTime) calculateDisplayRange(DateTime totalStart, DateTime totalEnd, DateTime visibleStart,
       DateTime visibleEnd, Duration startPadding, Duration endPadding) {
     final effectiveTotalStart = totalStart.subtract(startPadding);
     final effectiveTotalEnd = totalEnd.add(endPadding);
@@ -101,7 +101,7 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
         scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -147,7 +147,7 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
         scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -424,7 +424,7 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+      final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
           scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -471,7 +471,7 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+      final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
           scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -518,7 +518,7 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
+      final (displayStart, displayEnd) = calculateDisplayRange(
           scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -563,7 +563,7 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
+      final (displayStart, displayEnd) = calculateDisplayRange(
           scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -670,7 +670,7 @@ void main() {
       final visibleStart = DateTime(2023, 1, 1);
       final visibleEnd = DateTime(2023, 1, 3);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
+      final (displayStart, displayEnd) = calculateDisplayRange(
         totalStart,
         totalEnd,
         visibleStart,
@@ -697,7 +697,7 @@ void main() {
       final visibleStart = DateTime(2023, 1, 29);
       final visibleEnd = DateTime(2023, 1, 31);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
+      final (displayStart, displayEnd) = calculateDisplayRange(
         totalStart,
         totalEnd,
         visibleStart,

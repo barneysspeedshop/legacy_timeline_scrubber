@@ -1,3 +1,7 @@
+## 1.0.3
+
+* **PATCH**: Add test coverage badge to README.md
+
 ## 1.0.2
 
 * **FIX**: Optimize example gif size
