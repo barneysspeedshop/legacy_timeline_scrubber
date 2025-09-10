@@ -61,12 +61,10 @@ class LegacyGanttTimelineScrubber extends StatefulWidget {
   });
 
   @override
-  State<LegacyGanttTimelineScrubber> createState() =>
-      _LegacyGanttTimelineScrubberState();
+  State<LegacyGanttTimelineScrubber> createState() => _LegacyGanttTimelineScrubberState();
 }
 
-class _LegacyGanttTimelineScrubberState
-    extends State<LegacyGanttTimelineScrubber> {
+class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubber> {
   _DragType _dragType = _DragType.none;
   double _dragStartDx = 0.0;
   late DateTime _dragStartVisibleStart;
@@ -75,12 +73,10 @@ class _LegacyGanttTimelineScrubberState
   late DateTime _dragStartDisplayEnd;
   MouseCursor _cursor = SystemMouseCursors.basic;
 
-  DateTime get _effectiveTotalStart =>
-      widget.totalStartDate.subtract(widget.startPadding);
+  DateTime get _effectiveTotalStart => widget.totalStartDate.subtract(widget.startPadding);
   DateTime get _effectiveTotalEnd => widget.totalEndDate.add(widget.endPadding);
 
-  (DateTime, DateTime) _calculateDisplayRange(
-      DateTime visibleStart, DateTime visibleEnd, double width) {
+  (DateTime, DateTime) _calculateDisplayRange(DateTime visibleStart, DateTime visibleEnd, double width) {
     final visibleDuration = visibleEnd.difference(visibleStart);
     final totalDuration = _effectiveTotalEnd.difference(_effectiveTotalStart);
 
@@ -88,8 +84,7 @@ class _LegacyGanttTimelineScrubberState
       return (_effectiveTotalStart, _effectiveTotalEnd);
     }
 
-    final bufferDuration =
-        Duration(milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
+    final bufferDuration = Duration(milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
 
     DateTime displayStart = visibleStart.subtract(bufferDuration);
     DateTime displayEnd = visibleEnd.add(bufferDuration);
@@ -122,17 +117,12 @@ class _LegacyGanttTimelineScrubberState
   _DragType _getDragTypeAtPosition(Offset localPosition, double width) {
     if (width == 0) return _DragType.none;
 
-    final (displayStart, displayEnd) = _calculateDisplayRange(
-        widget.visibleStartDate, widget.visibleEndDate, width);
+    final (displayStart, displayEnd) = _calculateDisplayRange(widget.visibleStartDate, widget.visibleEndDate, width);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     if (displayDurationMs <= 0) return _DragType.none;
 
-    final double startX = (widget.visibleStartDate.difference(displayStart).inMilliseconds /
-            displayDurationMs) *
-        width;
-    final double endX = (widget.visibleEndDate.difference(displayStart).inMilliseconds /
-            displayDurationMs) *
-        width;
+    final double startX = (widget.visibleStartDate.difference(displayStart).inMilliseconds / displayDurationMs) * width;
+    final double endX = (widget.visibleEndDate.difference(displayStart).inMilliseconds / displayDurationMs) * width;
 
     const handleHitWidth = 20.0;
     if ((localPosition.dx - startX).abs() < handleHitWidth) {
@@ -181,8 +171,7 @@ class _LegacyGanttTimelineScrubberState
       _dragStartVisibleStart = widget.visibleStartDate;
       _dragStartVisibleEnd = widget.visibleEndDate;
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
-          widget.visibleStartDate, widget.visibleEndDate, width);
+      final (displayStart, displayEnd) = _calculateDisplayRange(widget.visibleStartDate, widget.visibleEndDate, width);
       _dragStartDisplayStart = displayStart;
       _dragStartDisplayEnd = displayEnd;
     }
@@ -191,13 +180,11 @@ class _LegacyGanttTimelineScrubberState
   void _onPanUpdate(DragUpdateDetails details, double width) {
     if (_dragType == _DragType.none) return;
 
-    final dragDisplayDuration =
-        _dragStartDisplayEnd.difference(_dragStartDisplayStart);
+    final dragDisplayDuration = _dragStartDisplayEnd.difference(_dragStartDisplayStart);
     if (dragDisplayDuration.inMilliseconds <= 0) return;
 
     final dx = details.localPosition.dx - _dragStartDx;
-    final dDuration = Duration(
-        milliseconds: (dx / width * dragDisplayDuration.inMilliseconds).round());
+    final dDuration = Duration(milliseconds: (dx / width * dragDisplayDuration.inMilliseconds).round());
 
     DateTime newVisibleStart = _dragStartVisibleStart;
     DateTime newVisibleEnd = _dragStartVisibleEnd;
@@ -242,12 +229,8 @@ class _LegacyGanttTimelineScrubberState
       }
     }
 
-    newVisibleStart = newVisibleStart.isBefore(_effectiveTotalStart)
-        ? _effectiveTotalStart
-        : newVisibleStart;
-    newVisibleEnd = newVisibleEnd.isAfter(_effectiveTotalEnd)
-        ? _effectiveTotalEnd
-        : newVisibleEnd;
+    newVisibleStart = newVisibleStart.isBefore(_effectiveTotalStart) ? _effectiveTotalStart : newVisibleStart;
+    newVisibleEnd = newVisibleEnd.isAfter(_effectiveTotalEnd) ? _effectiveTotalEnd : newVisibleEnd;
     if (newVisibleEnd.isBefore(newVisibleStart)) {
       newVisibleEnd = newVisibleStart.add(minWindowDuration);
     }
@@ -268,8 +251,7 @@ class _LegacyGanttTimelineScrubberState
         );
 
         final totalDuration = _effectiveTotalEnd.difference(_effectiveTotalStart);
-        final isZoomed = displayEnd.difference(displayStart).inMicroseconds <
-            totalDuration.inMicroseconds;
+        final isZoomed = displayEnd.difference(displayStart).inMicroseconds < totalDuration.inMicroseconds;
 
         return Stack(
           alignment: Alignment.centerRight,
@@ -303,10 +285,9 @@ class _LegacyGanttTimelineScrubberState
                 visualDensity: VisualDensity.compact,
                 icon: const Icon(Icons.zoom_out_map),
                 iconSize: 20.0,
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha:0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 tooltip: 'Reset Zoom',
-                onPressed: () =>
-                    widget.onWindowChanged(_effectiveTotalStart, _effectiveTotalEnd),
+                onPressed: () => widget.onWindowChanged(_effectiveTotalStart, _effectiveTotalEnd),
               ),
           ],
         );
@@ -356,7 +337,7 @@ class _ScrubberPainter extends CustomPainter {
       if (task.isOverlapIndicator) {
         taskPaint.color = theme.conflictBarColor;
       } else {
-        taskPaint.color = (task.color ?? theme.barColorPrimary).withValues(alpha:0.5);
+        taskPaint.color = (task.color ?? theme.barColorPrimary).withValues(alpha: 0.5);
       }
 
       canvas.drawRect(
@@ -380,32 +361,27 @@ class _ScrubberPainter extends CustomPainter {
 
     final handlePaint = Paint()..color = theme.scrubberWindowBorderColor;
     const handleWidth = 4.0;
-    final leftHandleRect =
-        Rect.fromLTWH(visibleStartX - handleWidth / 2, 0, handleWidth, size.height);
-    final rightHandleRect =
-        Rect.fromLTWH(visibleEndX - handleWidth / 2, 0, handleWidth, size.height);
+    final leftHandleRect = Rect.fromLTWH(visibleStartX - handleWidth / 2, 0, handleWidth, size.height);
+    final rightHandleRect = Rect.fromLTWH(visibleEndX - handleWidth / 2, 0, handleWidth, size.height);
 
     canvas.drawRect(leftHandleRect, handlePaint);
     canvas.drawRect(rightHandleRect, handlePaint);
 
     const fadeWidth = 20.0;
-    final shadowColor = theme.textColor.withValues(alpha:0.16);
+    final shadowColor = theme.textColor.withValues(alpha: 0.16);
 
     if (displayStartDate.isAfter(totalStartDate)) {
       final leftFadeRect = Rect.fromLTWH(0, 0, fadeWidth, size.height);
       final leftGradient = LinearGradient(
-        colors: [shadowColor, shadowColor.withValues(alpha:0)],
+        colors: [shadowColor, shadowColor.withValues(alpha: 0)],
       );
-      canvas.drawRect(
-          leftFadeRect, Paint()..shader = leftGradient.createShader(leftFadeRect));
+      canvas.drawRect(leftFadeRect, Paint()..shader = leftGradient.createShader(leftFadeRect));
     }
 
     if (displayEndDate.isBefore(totalEndDate)) {
-      final rightFadeRect =
-          Rect.fromLTWH(size.width - fadeWidth, 0, fadeWidth, size.height);
-      final rightGradient = LinearGradient(colors: [shadowColor.withValues(alpha:0), shadowColor]);
-      canvas.drawRect(rightFadeRect,
-          Paint()..shader = rightGradient.createShader(rightFadeRect));
+      final rightFadeRect = Rect.fromLTWH(size.width - fadeWidth, 0, fadeWidth, size.height);
+      final rightGradient = LinearGradient(colors: [shadowColor.withValues(alpha: 0), shadowColor]);
+      canvas.drawRect(rightFadeRect, Paint()..shader = rightGradient.createShader(rightFadeRect));
     }
   }
 

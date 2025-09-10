@@ -40,16 +40,17 @@ void main() {
       List<LegacyGanttTask>? tasks,
       DateTime? customDisplayStart,
       DateTime? customDisplayEnd,
-    }) => _ScrubberPainter(
-        totalStartDate: totalStart,
-        totalEndDate: totalEnd,
-        displayStartDate: customDisplayStart ?? displayStart,
-        displayEndDate: customDisplayEnd ?? displayEnd,
-        visibleStartDate: visibleStart,
-        visibleEndDate: visibleEnd,
-        tasks: tasks ?? [],
-        theme: theme,
-      );
+    }) =>
+        _ScrubberPainter(
+          totalStartDate: totalStart,
+          totalEndDate: totalEnd,
+          displayStartDate: customDisplayStart ?? displayStart,
+          displayEndDate: customDisplayEnd ?? displayEnd,
+          visibleStartDate: visibleStart,
+          visibleEndDate: visibleEnd,
+          tasks: tasks ?? [],
+          theme: theme,
+        );
 
     test('paint does nothing if display duration is zero or negative', () {
       final canvas = MockCanvas();

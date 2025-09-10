@@ -62,8 +62,7 @@ void main() {
           ),
         );
 
-    testWidgets('renders correctly with tasks and window',
-        (WidgetTester tester) async {
+    testWidgets('renders correctly with tasks and window', (WidgetTester tester) async {
       await tester.pumpWidget(buildScrubber());
 
       await expectLater(
@@ -72,8 +71,7 @@ void main() {
       );
     });
 
-    testWidgets('renders correctly when fully zoomed out',
-        (WidgetTester tester) async {
+    testWidgets('renders correctly when fully zoomed out', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
           body: Center(
@@ -84,7 +82,7 @@ void main() {
                 totalStartDate: totalStart,
                 totalEndDate: totalEnd,
                 visibleStartDate: totalStart, // Fully zoomed out
-                visibleEndDate: totalEnd,     // Fully zoomed out
+                visibleEndDate: totalEnd, // Fully zoomed out
                 onWindowChanged: (start, end) {},
                 tasks: tasks,
               ),
@@ -93,12 +91,10 @@ void main() {
         ),
       ));
 
-      await expectLater(find.byType(LegacyGanttTimelineScrubber),
-          matchesGoldenFile('goldens/scrubber_zoomed_out.png'));
+      await expectLater(find.byType(LegacyGanttTimelineScrubber), matchesGoldenFile('goldens/scrubber_zoomed_out.png'));
     });
 
-    testWidgets('renders correctly with a custom theme',
-        (WidgetTester tester) async {
+    testWidgets('renders correctly with a custom theme', (WidgetTester tester) async {
       final customTheme = LegacyGanttTheme(
         // Provide required theme properties
         barColorPrimary: Colors.teal,
@@ -131,7 +127,8 @@ void main() {
         ),
       ));
 
-      await expectLater(find.byType(LegacyGanttTimelineScrubber), matchesGoldenFile('goldens/scrubber_with_custom_theme.png'));
+      await expectLater(
+          find.byType(LegacyGanttTimelineScrubber), matchesGoldenFile('goldens/scrubber_with_custom_theme.png'));
     });
   });
 }

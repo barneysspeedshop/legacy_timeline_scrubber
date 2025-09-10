@@ -23,14 +23,12 @@ void main() {
       expect(requiredTheme.summaryBarColor, const Color(0x33000000));
       expect(requiredTheme.conflictBarColor, const Color(0x80F44336));
       expect(requiredTheme.ghostBarColor, const Color(0xB32196F3));
-      expect(requiredTheme.taskTextStyle,
-          const TextStyle(fontSize: 14, color: Colors.white));
+      expect(requiredTheme.taskTextStyle, const TextStyle(fontSize: 14, color: Colors.white));
       expect(requiredTheme.showRowBorders, isFalse);
       expect(requiredTheme.rowBorderColor, isNull);
       expect(requiredTheme.dependencyLineColor, const Color(0xFF616161));
       expect(requiredTheme.timeRangeHighlightColor, const Color(0x0D000000));
-      expect(requiredTheme.containedDependencyBackgroundColor,
-          const Color(0x1A000000));
+      expect(requiredTheme.containedDependencyBackgroundColor, const Color(0x1A000000));
       expect(requiredTheme.emptySpaceHighlightColor, const Color(0x0F2196F3));
       expect(requiredTheme.emptySpaceAddIconColor, const Color(0xFF2196F3));
       expect(requiredTheme.barHeightRatio, 0.7);
@@ -39,8 +37,7 @@ void main() {
       expect(requiredTheme.scrubberWindowColor, const Color(0x332196F3));
       expect(requiredTheme.scrubberWindowBorderColor, const Color(0xFF1976D2));
       // Test axisTextStyle default logic
-      expect(requiredTheme.axisTextStyle,
-          TextStyle(fontSize: 12, color: requiredTheme.textColor));
+      expect(requiredTheme.axisTextStyle, TextStyle(fontSize: 12, color: requiredTheme.textColor));
     });
 
     test('constructor uses provided axisTextStyle', () {
@@ -85,23 +82,17 @@ void main() {
       expect(copiedTheme.axisTextStyle, requiredTheme.axisTextStyle);
       expect(copiedTheme.taskTextStyle, requiredTheme.taskTextStyle);
       expect(copiedTheme.dependencyLineColor, requiredTheme.dependencyLineColor);
-      expect(copiedTheme.timeRangeHighlightColor,
-          requiredTheme.timeRangeHighlightColor);
-      expect(copiedTheme.containedDependencyBackgroundColor,
-          requiredTheme.containedDependencyBackgroundColor);
-      expect(copiedTheme.emptySpaceHighlightColor,
-          requiredTheme.emptySpaceHighlightColor);
-      expect(
-          copiedTheme.emptySpaceAddIconColor, requiredTheme.emptySpaceAddIconColor);
+      expect(copiedTheme.timeRangeHighlightColor, requiredTheme.timeRangeHighlightColor);
+      expect(copiedTheme.containedDependencyBackgroundColor, requiredTheme.containedDependencyBackgroundColor);
+      expect(copiedTheme.emptySpaceHighlightColor, requiredTheme.emptySpaceHighlightColor);
+      expect(copiedTheme.emptySpaceAddIconColor, requiredTheme.emptySpaceAddIconColor);
       expect(copiedTheme.barHeightRatio, requiredTheme.barHeightRatio);
       expect(copiedTheme.barCornerRadius, requiredTheme.barCornerRadius);
       expect(copiedTheme.showRowBorders, requiredTheme.showRowBorders);
       expect(copiedTheme.rowBorderColor, requiredTheme.rowBorderColor);
-      expect(copiedTheme.scrubberBackgroundColor,
-          requiredTheme.scrubberBackgroundColor);
+      expect(copiedTheme.scrubberBackgroundColor, requiredTheme.scrubberBackgroundColor);
       expect(copiedTheme.scrubberWindowColor, requiredTheme.scrubberWindowColor);
-      expect(copiedTheme.scrubberWindowBorderColor,
-          requiredTheme.scrubberWindowBorderColor);
+      expect(copiedTheme.scrubberWindowBorderColor, requiredTheme.scrubberWindowBorderColor);
     });
 
     group('fromTheme factory', () {
@@ -120,27 +111,17 @@ void main() {
         expect(ganttTheme.barColorSecondary, materialTheme.colorScheme.secondary);
         expect(ganttTheme.textColor, materialTheme.colorScheme.onSurface);
         expect(ganttTheme.backgroundColor, materialTheme.colorScheme.surface);
-        expect(ganttTheme.gridColor,
-            materialTheme.colorScheme.onSurface.withValues(alpha:0.2));
-        expect(ganttTheme.ghostBarColor,
-            materialTheme.colorScheme.primary.withValues(alpha:0.7));
+        expect(ganttTheme.gridColor, materialTheme.colorScheme.onSurface.withValues(alpha: 0.2));
+        expect(ganttTheme.ghostBarColor, materialTheme.colorScheme.primary.withValues(alpha: 0.7));
         expect(ganttTheme.axisTextStyle, materialTheme.textTheme.bodySmall);
-        expect(
-            ganttTheme.taskTextStyle,
-            materialTheme.textTheme.bodyMedium
-                ?.copyWith(color: materialTheme.colorScheme.onPrimary));
-        expect(ganttTheme.scrubberBackgroundColor,
-            materialTheme.colorScheme.surfaceContainerHighest);
-        expect(
-            ganttTheme.scrubberWindowColor,
-            materialTheme.colorScheme.primaryContainer.withValues(alpha:0.2));
-        expect(ganttTheme.scrubberWindowBorderColor,
-            materialTheme.colorScheme.primary);
+        expect(ganttTheme.taskTextStyle,
+            materialTheme.textTheme.bodyMedium?.copyWith(color: materialTheme.colorScheme.onPrimary));
+        expect(ganttTheme.scrubberBackgroundColor, materialTheme.colorScheme.surfaceContainerHighest);
+        expect(ganttTheme.scrubberWindowColor, materialTheme.colorScheme.primaryContainer.withValues(alpha: 0.2));
+        expect(ganttTheme.scrubberWindowBorderColor, materialTheme.colorScheme.primary);
       });
 
-      test(
-          'uses default ThemeData text styles when none are provided in TextTheme',
-          () {
+      test('uses default ThemeData text styles when none are provided in TextTheme', () {
         final materialTheme = ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
           textTheme: const TextTheme(bodySmall: null, bodyMedium: null),
@@ -152,13 +133,11 @@ void main() {
         // The fromTheme factory should use these defaults.
         // The default for bodySmall has a fontSize of 12.
         expect(ganttTheme.axisTextStyle.fontSize, 12);
-        expect(
-            ganttTheme.axisTextStyle.color, materialTheme.colorScheme.onSurface);
+        expect(ganttTheme.axisTextStyle.color, materialTheme.colorScheme.onSurface);
 
         // The default for bodyMedium has a fontSize of 14.
         expect(ganttTheme.taskTextStyle.fontSize, 14);
-        expect(ganttTheme.taskTextStyle.color,
-            materialTheme.colorScheme.onPrimary);
+        expect(ganttTheme.taskTextStyle.color, materialTheme.colorScheme.onPrimary);
       });
     });
   });

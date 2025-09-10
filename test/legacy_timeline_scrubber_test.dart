@@ -5,13 +5,8 @@ import 'package:legacy_timeline_scrubber/legacy_timeline_scrubber.dart';
 
 void main() {
   // Helper to calculate the display range, mirroring the logic in the widget.
-  (DateTime, DateTime) _calculateDisplayRange(
-      DateTime totalStart,
-      DateTime totalEnd,
-      DateTime visibleStart,
-      DateTime visibleEnd,
-      Duration startPadding,
-      Duration endPadding) {
+  (DateTime, DateTime) _calculateDisplayRange(DateTime totalStart, DateTime totalEnd, DateTime visibleStart,
+      DateTime visibleEnd, Duration startPadding, Duration endPadding) {
     final effectiveTotalStart = totalStart.subtract(startPadding);
     final effectiveTotalEnd = totalEnd.add(endPadding);
     final visibleDuration = visibleEnd.difference(visibleStart);
@@ -21,8 +16,7 @@ void main() {
       return (effectiveTotalStart, effectiveTotalEnd);
     }
 
-    final bufferDuration =
-        Duration(milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
+    final bufferDuration = Duration(milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
 
     DateTime displayStart = visibleStart.subtract(bufferDuration);
     DateTime displayEnd = visibleEnd.add(bufferDuration);
@@ -107,13 +101,8 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = _calculateDisplayRange(
-        scrubberWidget.totalStartDate,
-        scrubberWidget.totalEndDate,
-        newStart,
-        newEnd,
-        scrubberWidget.startPadding,
-        scrubberWidget.endPadding);
+    final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+        scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -158,13 +147,8 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = _calculateDisplayRange(
-        scrubberWidget.totalStartDate,
-        scrubberWidget.totalEndDate,
-        newStart,
-        newEnd,
-        scrubberWidget.startPadding,
-        scrubberWidget.endPadding);
+    final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+        scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -250,8 +234,7 @@ void main() {
     expect(newEnd, DateTime(2023, 1, 31));
   });
 
-  testWidgets('LegacyGanttTimelineScrubber reset zoom button is hidden when not zoomed',
-      (WidgetTester tester) async {
+  testWidgets('LegacyGanttTimelineScrubber reset zoom button is hidden when not zoomed', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -274,14 +257,15 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
             body: LegacyGanttTimelineScrubber(
-                totalStartDate: DateTime(2023, 1, 1), totalEndDate: DateTime(2023, 1, 31),
-                visibleStartDate: DateTime(2022, 12, 1), visibleEndDate: DateTime(2023, 2, 28),
+                totalStartDate: DateTime(2023, 1, 1),
+                totalEndDate: DateTime(2023, 1, 31),
+                visibleStartDate: DateTime(2022, 12, 1),
+                visibleEndDate: DateTime(2023, 2, 28),
                 onWindowChanged: (start, end) {}))));
     expect(find.byIcon(Icons.zoom_out_map), findsNothing);
   });
 
-  testWidgets('LegacyGanttTimelineScrubber mouse cursor changes on hover',
-      (WidgetTester tester) async {
+  testWidgets('LegacyGanttTimelineScrubber mouse cursor changes on hover', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -308,8 +292,9 @@ void main() {
     addTearDown(gesture.removePointer);
 
     // Helper to get the current cursor
-    MouseCursor cursor() => tester.widget<MouseRegion>(find.ancestor(
-        of: find.byType(CustomPaint), matching: find.byType(MouseRegion))).cursor;
+    MouseCursor cursor() => tester
+        .widget<MouseRegion>(find.ancestor(of: find.byType(CustomPaint), matching: find.byType(MouseRegion)))
+        .cursor;
 
     // Hover over the middle of the window
     await gesture.moveTo(tester.getCenter(scrubber));
@@ -332,9 +317,7 @@ void main() {
     expect(cursor(), SystemMouseCursors.basic);
   });
 
-  testWidgets(
-      'LegacyGanttTimelineScrubber respects start boundary on window drag',
-      (WidgetTester tester) async {
+  testWidgets('LegacyGanttTimelineScrubber respects start boundary on window drag', (WidgetTester tester) async {
     DateTime newStart = DateTime(2023, 1, 10);
     DateTime newEnd = DateTime(2023, 1, 12);
     final totalStart = DateTime(2023, 1, 1);
@@ -362,8 +345,7 @@ void main() {
       ),
     );
 
-    final scrubberCenter =
-        tester.getCenter(find.byType(LegacyGanttTimelineScrubber));
+    final scrubberCenter = tester.getCenter(find.byType(LegacyGanttTimelineScrubber));
     final TestGesture gesture = await tester.startGesture(scrubberCenter);
     await gesture.moveBy(const Offset(-5000, 0)); // Drag way past the start
     await gesture.up();
@@ -373,8 +355,7 @@ void main() {
     expect(newEnd.difference(newStart), originalDuration);
   });
 
-  testWidgets('LegacyGanttTimelineScrubber respects end boundary on window drag',
-      (WidgetTester tester) async {
+  testWidgets('LegacyGanttTimelineScrubber respects end boundary on window drag', (WidgetTester tester) async {
     DateTime newStart = DateTime(2023, 1, 10);
     DateTime newEnd = DateTime(2023, 1, 12);
     final totalStart = DateTime(2023, 1, 1);
@@ -402,8 +383,7 @@ void main() {
       ),
     );
 
-    final scrubberCenter =
-        tester.getCenter(find.byType(LegacyGanttTimelineScrubber));
+    final scrubberCenter = tester.getCenter(find.byType(LegacyGanttTimelineScrubber));
     final TestGesture gesture = await tester.startGesture(scrubberCenter);
     await gesture.moveBy(const Offset(10000, 0)); // Drag way past the end
     await gesture.up();
@@ -413,8 +393,7 @@ void main() {
   });
 
   group('LegacyGanttTimelineScrubber drag constraints', () {
-    testWidgets('respects minimum window size when dragging left handle',
-        (WidgetTester tester) async {
+    testWidgets('respects minimum window size when dragging left handle', (WidgetTester tester) async {
       DateTime newStart = DateTime(2023, 1, 10);
       DateTime newEnd = DateTime(2023, 1, 10, 2); // 2 hour window
       final initialEnd = newEnd;
@@ -445,13 +424,8 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
-          scrubberWidget.totalStartDate,
-          scrubberWidget.totalEndDate,
-          newStart,
-          newEnd,
-          scrubberWidget.startPadding,
-          scrubberWidget.endPadding);
+      final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+          scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -466,8 +440,7 @@ void main() {
       expect(newStart, initialEnd.subtract(minWindowDuration));
     });
 
-    testWidgets('respects minimum window size when dragging right handle',
-        (WidgetTester tester) async {
+    testWidgets('respects minimum window size when dragging right handle', (WidgetTester tester) async {
       DateTime newStart = DateTime(2023, 1, 10);
       DateTime newEnd = DateTime(2023, 1, 10, 2); // 2 hour window
       final initialStart = newStart;
@@ -498,13 +471,8 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = _calculateDisplayRange(
-          scrubberWidget.totalStartDate,
-          scrubberWidget.totalEndDate,
-          newStart,
-          newEnd,
-          scrubberWidget.startPadding,
-          scrubberWidget.endPadding);
+      final (displayStart, displayEnd) = _calculateDisplayRange(scrubberWidget.totalStartDate,
+          scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -519,8 +487,7 @@ void main() {
       expect(newEnd, initialStart.add(minWindowDuration));
     });
 
-    testWidgets('respects start boundary on left handle drag',
-        (WidgetTester tester) async {
+    testWidgets('respects start boundary on left handle drag', (WidgetTester tester) async {
       DateTime newStart = DateTime(2023, 1, 10);
       DateTime newEnd = DateTime(2023, 1, 12);
       final totalStart = DateTime(2023, 1, 1);
@@ -565,8 +532,7 @@ void main() {
       expect(newStart, totalStart);
     });
 
-    testWidgets('respects end boundary on right handle drag',
-        (WidgetTester tester) async {
+    testWidgets('respects end boundary on right handle drag', (WidgetTester tester) async {
       DateTime newStart = DateTime(2023, 1, 10);
       DateTime newEnd = DateTime(2023, 1, 12);
       final totalEnd = DateTime(2023, 1, 31);
@@ -593,26 +559,16 @@ void main() {
       );
 
       final scrubber = find.byType(LegacyGanttTimelineScrubber);
-      final scrubberWidget =
-          tester.widget<LegacyGanttTimelineScrubber>(scrubber);
+      final scrubberWidget = tester.widget<LegacyGanttTimelineScrubber>(scrubber);
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
       final (displayStart, displayEnd) = _calculateDisplayRange(
-          scrubberWidget.totalStartDate,
-          scrubberWidget.totalEndDate,
-          newStart,
-          newEnd,
-          Duration.zero,
-          Duration.zero);
-      final displayDurationMs =
-          displayEnd.difference(displayStart).inMilliseconds;
-      final endX = (newEnd.difference(displayStart).inMilliseconds /
-              displayDurationMs) *
-          scrubberSize.width;
+          scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
+      final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
+      final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
-      final Offset rightHandle =
-          scrubberTopLeft + Offset(endX, scrubberSize.height / 2);
+      final Offset rightHandle = scrubberTopLeft + Offset(endX, scrubberSize.height / 2);
       final TestGesture gesture = await tester.startGesture(rightHandle);
       await gesture.moveBy(const Offset(10000, 0)); // Drag way past the end
       await gesture.up();
@@ -622,8 +578,7 @@ void main() {
     });
   });
 
-  testWidgets('LegacyGanttTimelineScrubber respects start and end padding',
-      (WidgetTester tester) async {
+  testWidgets('LegacyGanttTimelineScrubber respects start and end padding', (WidgetTester tester) async {
     DateTime newStart = DateTime(2023, 1, 5);
     DateTime newEnd = DateTime(2023, 1, 15);
     final totalStart = DateTime(2023, 1, 1);
@@ -655,7 +610,8 @@ void main() {
     );
 
     // Drag left handle beyond the padded start
-    final gesture = await tester.startGesture(tester.getCenter(find.byType(LegacyGanttTimelineScrubber)) - const Offset(100, 0));
+    final gesture =
+        await tester.startGesture(tester.getCenter(find.byType(LegacyGanttTimelineScrubber)) - const Offset(100, 0));
     await gesture.moveBy(const Offset(-500, 0));
     await gesture.up();
     await tester.pump();
@@ -672,8 +628,7 @@ void main() {
     expect(newEnd, totalEnd.add(endPadding));
   });
 
-  testWidgets('does not call onWindowChanged when dragging outside window',
-      (WidgetTester tester) async {
+  testWidgets('does not call onWindowChanged when dragging outside window', (WidgetTester tester) async {
     int callCount = 0;
 
     await tester.pumpWidget(
@@ -730,8 +685,7 @@ void main() {
       // And then the buffer is added on top of that.
       final visibleDuration = visibleEnd.difference(visibleStart);
       final expectedDisplayEnd = totalStart.add(visibleDuration);
-      final buffer = Duration(
-          milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
+      final buffer = Duration(milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
       expect(displayEnd, expectedDisplayEnd.add(buffer));
     });
 
