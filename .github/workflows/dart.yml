@@ -67,7 +67,12 @@ jobs:
           name: coverage-info
           path: coverage
       - name: Update coverage badge
-        uses: anrycode/lcov-badge-action@v1.2.0
+        run: |
+          chmod +x ./update_coverage_badge.sh
+          ./update_coverage_badge.sh
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          lcov-file: coverage/lcov.info
-          readme-file: README.md
+          commit_message: "chore: Update test coverage badge"
+          file_pattern: "README.md"
