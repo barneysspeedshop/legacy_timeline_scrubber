@@ -3,6 +3,9 @@ description: "A highly customizable timeline scrubber widget for Flutter, design
 version: 1.0.0
 homepage: https://github.com/barneysspeedshop/legacy_timeline_scrubber
 repository: https://github.com/barneysspeedshop/legacy_timeline_scrubber
+screenshots:
+  - description: 'Example of the timeline scrubber in action.'
+    path: example.gif
 
 environment:
   sdk: ^3.0.0
