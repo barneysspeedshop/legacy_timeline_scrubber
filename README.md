@@ -76,11 +76,12 @@ class _MyTimelineState extends State<MyTimeline> {
     ]);
   }
 
-  void onWindowChanged(DateTime start, DateTime end) {
+  void onWindowChanged(DateTime start, DateTime end, ScrubberHandle handle) {
     setState(() {
       visibleStartDate = start;
       visibleEndDate = end;
     });
+    debugPrint('Window changed via ${handle.name}');
   }
 
   @override
@@ -97,6 +98,24 @@ class _MyTimelineState extends State<MyTimeline> {
       ),
     );
   }
+}
+```
+
+The onWindowChanged callback provides a `ScrubberHandle` enum that indicates which part of the scrubber was interacted with to cause the change. It has the following values:
+
+* `ScrubberHandle.left`: The left handle of the scrubber window was dragged.
+* `ScrubberHandle.right`: The right handle of the scrubber window was dragged.
+* `ScrubberHandle.scrub`: The scrubber has translated the viewport horizontally (scrolling).
+* `ScrubberHandle.programmatic`: The change was not caused by a direct handle interaction (e.g., clicking the reset zoom button).
+
+This allows you to implement different logic based on how the user interacts with the timeline scrubber.
+
+```dart
+void onWindowChanged(DateTime start, DateTime end, ScrubberHandle handle) {
+  if (handle == ScrubberHandle.window) {
+    // User panned the visible window
+  }
+  // ... your logic here
 }
 ```
 

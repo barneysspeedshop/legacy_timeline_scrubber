@@ -1,3 +1,7 @@
+## 2.0.0
+
+* **BREAKING FEATURE**: Added `ScrubberHandle` to allow anchored scaling for better precision.
+
 ## 1.0.2
 
 * **FIX**: Optimize example gif size
