@@ -69,10 +69,11 @@ class TimelineViewModel extends ChangeNotifier {
     _defaultTheme = LegacyGanttTheme.fromTheme(Theme.of(context));
   }
 
-  void onWindowChanged(DateTime start, DateTime end) {
+  void onWindowChanged(DateTime start, DateTime end, ScrubberHandle handle) {
     _visibleStartDate = start;
     _visibleEndDate = end;
     notifyListeners();
+    debugPrint('Window changed via ${handle.name}');
   }
 
   void setUseCustomTheme(bool value) {

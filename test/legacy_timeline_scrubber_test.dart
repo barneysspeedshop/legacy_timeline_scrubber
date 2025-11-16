@@ -59,7 +59,7 @@ void main() {
             totalEndDate: DateTime(2023, 1, 31),
             visibleStartDate: DateTime(2023, 1, 5),
             visibleEndDate: DateTime(2023, 1, 15),
-            onWindowChanged: (start, end) {},
+            onWindowChanged: (start, end, handle) {},
           ),
         ),
       ),
@@ -82,7 +82,7 @@ void main() {
               totalEndDate: DateTime(2023, 1, 31),
               visibleStartDate: newStart,
               visibleEndDate: newEnd,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -101,8 +101,8 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
-        scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
+    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate, scrubberWidget.totalEndDate,
+        newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -128,7 +128,7 @@ void main() {
               totalEndDate: DateTime(2023, 1, 31),
               visibleStartDate: newStart,
               visibleEndDate: newEnd,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -147,8 +147,8 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
-        scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
+    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate, scrubberWidget.totalEndDate,
+        newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -174,7 +174,7 @@ void main() {
               totalEndDate: DateTime(2023, 1, 31),
               visibleStartDate: newStart,
               visibleEndDate: newEnd,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -212,7 +212,7 @@ void main() {
               totalEndDate: DateTime(2023, 1, 31),
               visibleStartDate: newStart,
               visibleEndDate: newEnd,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -244,7 +244,7 @@ void main() {
             // Visible window is same as total window
             visibleStartDate: DateTime(2023, 1, 1),
             visibleEndDate: DateTime(2023, 1, 31),
-            onWindowChanged: (start, end) {},
+            onWindowChanged: (start, end, handle) {},
           ),
         ),
       ),
@@ -261,7 +261,7 @@ void main() {
                 totalEndDate: DateTime(2023, 1, 31),
                 visibleStartDate: DateTime(2022, 12, 1),
                 visibleEndDate: DateTime(2023, 2, 28),
-                onWindowChanged: (start, end) {}))));
+                onWindowChanged: (start, end, handle) {}))));
     expect(find.byIcon(Icons.zoom_out_map), findsNothing);
   });
 
@@ -278,7 +278,7 @@ void main() {
                 totalEndDate: DateTime(2023, 1, 31),
                 visibleStartDate: DateTime(2023, 1, 10),
                 visibleEndDate: DateTime(2023, 1, 20),
-                onWindowChanged: (start, end) {},
+                onWindowChanged: (start, end, handle) {},
               ),
             ),
           ),
@@ -333,7 +333,7 @@ void main() {
               totalEndDate: totalEnd,
               visibleStartDate: newStart,
               visibleEndDate: newEnd,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -371,7 +371,7 @@ void main() {
               totalEndDate: totalEnd,
               visibleStartDate: newStart,
               visibleEndDate: newEnd,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -407,7 +407,7 @@ void main() {
                 totalEndDate: DateTime(2023, 1, 31),
                 visibleStartDate: newStart,
                 visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
+                onWindowChanged: (start, end, handle) {
                   setState(() {
                     newStart = start;
                     newEnd = end;
@@ -454,7 +454,7 @@ void main() {
                 totalEndDate: DateTime(2023, 1, 31),
                 visibleStartDate: newStart,
                 visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
+                onWindowChanged: (start, end, handle) {
                   setState(() {
                     newStart = start;
                     newEnd = end;
@@ -501,7 +501,7 @@ void main() {
                 totalEndDate: DateTime(2023, 1, 31),
                 visibleStartDate: newStart,
                 visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
+                onWindowChanged: (start, end, handle) {
                   setState(() {
                     newStart = start;
                     newEnd = end;
@@ -546,7 +546,7 @@ void main() {
                 totalEndDate: totalEnd,
                 visibleStartDate: newStart,
                 visibleEndDate: newEnd,
-                onWindowChanged: (start, end) {
+                onWindowChanged: (start, end, handle) {
                   setState(() {
                     newStart = start;
                     newEnd = end;
@@ -597,7 +597,7 @@ void main() {
               visibleEndDate: newEnd,
               startPadding: startPadding,
               endPadding: endPadding,
-              onWindowChanged: (start, end) {
+              onWindowChanged: (start, end, handle) {
                 setState(() {
                   newStart = start;
                   newEnd = end;
@@ -639,7 +639,7 @@ void main() {
             totalEndDate: DateTime(2023, 1, 31),
             visibleStartDate: DateTime(2023, 1, 10),
             visibleEndDate: DateTime(2023, 1, 20),
-            onWindowChanged: (start, end) {
+            onWindowChanged: (start, end, handle) {
               callCount++;
             },
           ),
@@ -658,6 +658,37 @@ void main() {
     await tester.pump();
 
     // The onWindowChanged callback should not have been called.
+    expect(callCount, 0);
+  });
+
+  testWidgets('does not call onWindowChanged for _DragType.none inside onPanUpdate', (WidgetTester tester) async {
+    int callCount = 0;
+    DateTime visibleStart = DateTime(2023, 1, 10);
+    DateTime visibleEnd = DateTime(2023, 1, 20);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: LegacyGanttTimelineScrubber(
+            totalStartDate: DateTime(2023, 1, 1),
+            totalEndDate: DateTime(2023, 1, 31),
+            visibleStartDate: visibleStart,
+            visibleEndDate: visibleEnd,
+            onWindowChanged: (start, end, handle) {
+              callCount++;
+              visibleStart = start;
+              visibleEnd = end;
+            },
+          ),
+        ),
+      ),
+    );
+
+    // Start a drag gesture outside any interactive area of the scrubber.
+    final gesture = await tester.startGesture(const Offset(0, 0));
+    await gesture.moveBy(const Offset(50, 0));
+    await gesture.up();
+
     expect(callCount, 0);
   });
 
@@ -715,5 +746,58 @@ void main() {
       final buffer = Duration(milliseconds: (visibleDuration.inMilliseconds * 0.25).round());
       expect(displayStart, expectedDisplayStart.subtract(buffer));
     });
+  });
+
+  testWidgets('LegacyGanttTimelineScrubber adjusts end correctly when it becomes before start',
+      (WidgetTester tester) async {
+    DateTime newStart = DateTime(2023, 1, 10);
+    DateTime newEnd = DateTime(2023, 1, 20);
+    final totalStart = DateTime(2023, 1, 1);
+    final totalEnd = DateTime(2023, 1, 31);
+    const minWindowDuration = Duration(hours: 1);
+
+    await tester.pumpWidget(
+      StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) => MaterialApp(
+          home: Scaffold(
+            body: LegacyGanttTimelineScrubber(
+              totalStartDate: totalStart,
+              totalEndDate: totalEnd,
+              visibleStartDate: newStart,
+              visibleEndDate: newEnd,
+              onWindowChanged: (start, end, handle) {
+                setState(() {
+                  newStart = start;
+                  newEnd = end;
+                });
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final scrubber = find.byType(LegacyGanttTimelineScrubber);
+    final scrubberWidget = tester.widget<LegacyGanttTimelineScrubber>(scrubber);
+    final scrubberSize = tester.getSize(scrubber);
+    final scrubberTopLeft = tester.getTopLeft(scrubber);
+
+    final (displayStart, displayEnd) = calculateDisplayRange(
+        scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
+    final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
+    final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
+
+    final Offset rightHandle = scrubberTopLeft + Offset(endX, scrubberSize.height / 2);
+    final TestGesture gesture = await tester.startGesture(rightHandle);
+    // Drag the right handle far to the left, past the start handle and the total start date.
+    // This will cause newVisibleEnd to be before newVisibleStart, triggering the fix-up logic.
+    await gesture.moveBy(const Offset(-10000, 0));
+    await gesture.up();
+    await tester.pump();
+
+    // The start date remains unchanged because we only dragged the right handle.
+    expect(newStart, DateTime(2023, 1, 10));
+    // The end date is corrected to be `newStart` + `minWindowDuration`.
+    expect(newEnd, newStart.add(minWindowDuration));
   });
 }

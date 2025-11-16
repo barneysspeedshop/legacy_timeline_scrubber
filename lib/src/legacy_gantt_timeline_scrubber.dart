@@ -3,7 +3,22 @@ import 'package:flutter/material.dart';
 import 'models/legacy_gantt_task.dart';
 import 'models/legacy_gantt_theme.dart';
 
-enum _DragType { none, leftHandle, rightHandle, window }
+/// Indicates which part of the scrubber was interacted with to cause a change.
+enum ScrubberHandle {
+  /// The left handle of the scrubber window was dragged.
+  left,
+
+  /// The right handle of the scrubber window was dragged.
+  right,
+
+  /// The main body of the scrubber window was dragged.
+  scrub,
+
+  /// The change was not caused by a direct handle interaction (e.g., reset).
+  programmatic,
+}
+
+enum _DragType { none, leftHandle, rightHandle, scrub }
 
 /// A widget that displays a timeline scrubber for a Gantt chart.
 class LegacyGanttTimelineScrubber extends StatefulWidget {
@@ -20,7 +35,7 @@ class LegacyGanttTimelineScrubber extends StatefulWidget {
   final DateTime visibleEndDate;
 
   /// A callback that is called when the visible window changes.
-  final Function(DateTime, DateTime) onWindowChanged;
+  final Function(DateTime, DateTime, ScrubberHandle) onWindowChanged;
 
   /// The tasks to display in the timeline.
   final List<LegacyGanttTask> tasks;
@@ -130,7 +145,7 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
     } else if ((localPosition.dx - endX).abs() < handleHitWidth) {
       return _DragType.rightHandle;
     } else if (localPosition.dx > startX && localPosition.dx < endX) {
-      return _DragType.window;
+      return _DragType.scrub;
     } else {
       return _DragType.none;
     }
@@ -144,7 +159,7 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
       case _DragType.rightHandle:
         newCursor = SystemMouseCursors.resizeLeftRight;
         break;
-      case _DragType.window:
+      case _DragType.scrub:
         newCursor = SystemMouseCursors.move;
         break;
       case _DragType.none:
@@ -196,7 +211,7 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
       case _DragType.rightHandle:
         newVisibleEnd = _dragStartVisibleEnd.add(dDuration);
         break;
-      case _DragType.window:
+      case _DragType.scrub:
         newVisibleStart = _dragStartVisibleStart.add(dDuration);
         newVisibleEnd = _dragStartVisibleEnd.add(dDuration);
         break;
@@ -216,7 +231,7 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
     if (newVisibleStart.isBefore(_effectiveTotalStart)) {
       final correction = _effectiveTotalStart.difference(newVisibleStart);
       newVisibleStart = _effectiveTotalStart;
-      if (_dragType == _DragType.window) {
+      if (_dragType == _DragType.scrub) {
         newVisibleEnd = newVisibleEnd.add(correction);
       }
     }
@@ -224,7 +239,7 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
     if (newVisibleEnd.isAfter(_effectiveTotalEnd)) {
       final correction = _effectiveTotalEnd.difference(newVisibleEnd);
       newVisibleEnd = _effectiveTotalEnd;
-      if (_dragType == _DragType.window) {
+      if (_dragType == _DragType.scrub) {
         newVisibleStart = newVisibleStart.add(correction);
       }
     }
@@ -233,8 +248,24 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
     newVisibleEnd = newVisibleEnd.isAfter(_effectiveTotalEnd) ? _effectiveTotalEnd : newVisibleEnd;
     if (newVisibleEnd.isBefore(newVisibleStart)) {
       newVisibleEnd = newVisibleStart.add(minWindowDuration);
+      // This case needs a test
     }
-    widget.onWindowChanged(newVisibleStart, newVisibleEnd);
+
+    ScrubberHandle handle;
+    switch (_dragType) {
+      case _DragType.leftHandle:
+        handle = ScrubberHandle.left;
+        break;
+      case _DragType.rightHandle:
+        handle = ScrubberHandle.right;
+        break;
+      case _DragType.scrub:
+        handle = ScrubberHandle.scrub;
+        break;
+      case _DragType.none:
+        return; // Should not happen if we are in onPanUpdate
+    }
+    widget.onWindowChanged(newVisibleStart, newVisibleEnd, handle);
   }
 
   void _onPanEnd(DragEndDetails details) => _dragType = _DragType.none;
@@ -287,7 +318,8 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
                 iconSize: 20.0,
                 color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 tooltip: 'Reset Zoom',
-                onPressed: () => widget.onWindowChanged(_effectiveTotalStart, _effectiveTotalEnd),
+                onPressed: () =>
+                    widget.onWindowChanged(_effectiveTotalStart, _effectiveTotalEnd, ScrubberHandle.programmatic),
               ),
           ],
         );

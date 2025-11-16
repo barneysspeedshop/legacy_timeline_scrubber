@@ -52,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                   totalEndDate: viewModel.totalEndDate,
                   visibleStartDate: viewModel.visibleStartDate,
                   visibleEndDate: viewModel.visibleEndDate,
-                  onWindowChanged: viewModel.onWindowChanged,
+                  onWindowChanged: (start, end, handle) => viewModel.onWindowChanged(start, end, handle),
                   tasks: viewModel.tasks,
                   theme: viewModel.theme,
                 ),

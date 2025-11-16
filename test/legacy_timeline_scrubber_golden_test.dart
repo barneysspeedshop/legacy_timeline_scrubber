@@ -54,7 +54,7 @@ void main() {
                   totalEndDate: totalEnd,
                   visibleStartDate: visibleStart,
                   visibleEndDate: visibleEnd,
-                  onWindowChanged: (start, end) {},
+                  onWindowChanged: (start, end, handle) {},
                   tasks: tasks,
                 ),
               ),
@@ -83,7 +83,7 @@ void main() {
                 totalEndDate: totalEnd,
                 visibleStartDate: totalStart, // Fully zoomed out
                 visibleEndDate: totalEnd, // Fully zoomed out
-                onWindowChanged: (start, end) {},
+                onWindowChanged: (start, end, handle) {},
                 tasks: tasks,
               ),
             ),
@@ -102,7 +102,7 @@ void main() {
         textColor: Colors.black,
         backgroundColor: Colors.white,
         // Override scrubber-specific colors
-        scrubberWindowColor: Colors.orange.withValues(alpha:0.3),
+        scrubberWindowColor: Colors.orange.withValues(alpha: 0.3),
         scrubberWindowBorderColor: Colors.deepOrange,
         conflictBarColor: Colors.black,
       );
@@ -118,7 +118,7 @@ void main() {
                 totalEndDate: totalEnd,
                 visibleStartDate: visibleStart,
                 visibleEndDate: visibleEnd,
-                onWindowChanged: (start, end) {},
+                onWindowChanged: (start, end, handle) {},
                 tasks: tasks,
                 theme: customTheme,
               ),
