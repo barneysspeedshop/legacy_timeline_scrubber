@@ -19434,7 +19434,7 @@ $izH:1}
 A.a3d.prototype={
 $1(a){var s=A.c0().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/b5990e5ccc5e325fd24f0746e7d6689bbebc7c65/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/1527ae0ec577a4ef50e65f6fefcfc1326707d9bf/":s)+a},
 $S:116}
 A.Cb.prototype={
 gwf(){var s=this.b
