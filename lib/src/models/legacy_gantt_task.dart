@@ -18,10 +18,16 @@ class LegacyGanttTask {
   final String rowId;
 
   /// The start date of the task.
-  final DateTime start;
+  final DateTime? start;
 
   /// The end date of the task.
-  final DateTime end;
+  final DateTime? end;
+
+  /// The start line of the task.
+  final int? startLine;
+
+  /// The end line of the task.
+  final int? endLine;
 
   /// The name of the task.
   final String? name;
@@ -53,12 +59,20 @@ class LegacyGanttTask {
   /// The original identifier of the task.
   final String? originalId;
 
+  /// The start ratio of the task in the cross-axis (0.0 to 1.0).
+  final double? startRatio;
+
+  /// The end ratio of the task in the cross-axis (0.0 to 1.0).
+  final double? endRatio;
+
   /// Creates a new [LegacyGanttTask].
   const LegacyGanttTask({
     required this.id,
     required this.rowId,
     required this.start,
     required this.end,
+    this.startLine,
+    this.endLine,
     this.name,
     this.color,
     this.stackIndex,
@@ -69,6 +83,8 @@ class LegacyGanttTask {
     this.cellBuilder,
     this.textColor,
     this.originalId,
+    this.startRatio,
+    this.endRatio,
   });
 
   /// Creates a copy of this task with the given fields replaced with the new
@@ -78,6 +94,8 @@ class LegacyGanttTask {
     String? rowId,
     DateTime? start,
     DateTime? end,
+    int? startLine,
+    int? endLine,
     String? name,
     Color? color,
     int? stackIndex,
@@ -88,12 +106,16 @@ class LegacyGanttTask {
     CellBuilder? cellBuilder,
     Color? textColor,
     String? originalId,
+    double? startRatio,
+    double? endRatio,
   }) =>
       LegacyGanttTask(
         id: id ?? this.id,
         rowId: rowId ?? this.rowId,
         start: start ?? this.start,
         end: end ?? this.end,
+        startLine: startLine ?? this.startLine,
+        endLine: endLine ?? this.endLine,
         name: name ?? this.name,
         color: color ?? this.color,
         stackIndex: stackIndex ?? this.stackIndex,
@@ -104,6 +126,8 @@ class LegacyGanttTask {
         cellBuilder: cellBuilder ?? this.cellBuilder,
         textColor: textColor ?? this.textColor,
         originalId: originalId ?? this.originalId,
+        startRatio: startRatio ?? this.startRatio,
+        endRatio: endRatio ?? this.endRatio,
       );
 }
 

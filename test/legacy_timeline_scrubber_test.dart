@@ -101,7 +101,7 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate, scrubberWidget.totalEndDate,
+    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate!, scrubberWidget.totalEndDate!,
         newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -147,7 +147,7 @@ void main() {
     final scrubberSize = tester.getSize(scrubber);
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate, scrubberWidget.totalEndDate,
+    final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate!, scrubberWidget.totalEndDate!,
         newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
@@ -424,8 +424,8 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
-          scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
+      final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate!,
+          scrubberWidget.totalEndDate!, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -471,8 +471,8 @@ void main() {
       final scrubberSize = tester.getSize(scrubber);
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
-      final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate,
-          scrubberWidget.totalEndDate, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
+      final (displayStart, displayEnd) = calculateDisplayRange(scrubberWidget.totalStartDate!,
+          scrubberWidget.totalEndDate!, newStart, newEnd, scrubberWidget.startPadding, scrubberWidget.endPadding);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -519,7 +519,7 @@ void main() {
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
       final (displayStart, displayEnd) = calculateDisplayRange(
-          scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
+          scrubberWidget.totalStartDate!, scrubberWidget.totalEndDate!, newStart, newEnd, Duration.zero, Duration.zero);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final startX = (newStart.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -564,7 +564,7 @@ void main() {
       final scrubberTopLeft = tester.getTopLeft(scrubber);
 
       final (displayStart, displayEnd) = calculateDisplayRange(
-          scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
+          scrubberWidget.totalStartDate!, scrubberWidget.totalEndDate!, newStart, newEnd, Duration.zero, Duration.zero);
       final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
       final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
@@ -783,7 +783,7 @@ void main() {
     final scrubberTopLeft = tester.getTopLeft(scrubber);
 
     final (displayStart, displayEnd) = calculateDisplayRange(
-        scrubberWidget.totalStartDate, scrubberWidget.totalEndDate, newStart, newEnd, Duration.zero, Duration.zero);
+        scrubberWidget.totalStartDate!, scrubberWidget.totalEndDate!, newStart, newEnd, Duration.zero, Duration.zero);
     final displayDurationMs = displayEnd.difference(displayStart).inMilliseconds;
     final endX = (newEnd.difference(displayStart).inMilliseconds / displayDurationMs) * scrubberSize.width;
 
