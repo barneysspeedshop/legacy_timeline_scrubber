@@ -114,8 +114,10 @@ void main() {
         expect(ganttTheme.gridColor, materialTheme.colorScheme.onSurface.withValues(alpha: 0.2));
         expect(ganttTheme.ghostBarColor, materialTheme.colorScheme.primary.withValues(alpha: 0.7));
         expect(ganttTheme.axisTextStyle, materialTheme.textTheme.bodySmall);
-        expect(ganttTheme.taskTextStyle,
-            materialTheme.textTheme.bodyMedium?.copyWith(color: materialTheme.colorScheme.onPrimary));
+        expect(
+          ganttTheme.taskTextStyle,
+          materialTheme.textTheme.bodyMedium?.copyWith(color: materialTheme.colorScheme.onPrimary),
+        );
         expect(ganttTheme.scrubberBackgroundColor, materialTheme.colorScheme.surfaceContainerHighest);
         expect(ganttTheme.scrubberWindowColor, materialTheme.colorScheme.primaryContainer.withValues(alpha: 0.2));
         expect(ganttTheme.scrubberWindowBorderColor, materialTheme.colorScheme.primary);

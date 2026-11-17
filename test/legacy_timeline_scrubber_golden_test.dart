@@ -19,12 +19,7 @@ void main() {
         color: Colors.purple,
       ),
       // Task with no color, should use theme default
-      LegacyGanttTask(
-        id: '2',
-        rowId: 'r1',
-        start: DateTime(2023, 1, 16),
-        end: DateTime(2023, 1, 18),
-      ),
+      LegacyGanttTask(id: '2', rowId: 'r1', start: DateTime(2023, 1, 16), end: DateTime(2023, 1, 18)),
       // Overlap indicator task
       LegacyGanttTask(
         id: '3',
@@ -44,6 +39,33 @@ void main() {
     ];
 
     Widget buildScrubber() => MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: SizedBox(
+            width: 400,
+            height: 50,
+            child: LegacyGanttTimelineScrubber(
+              totalStartDate: totalStart,
+              totalEndDate: totalEnd,
+              visibleStartDate: visibleStart,
+              visibleEndDate: visibleEnd,
+              onWindowChanged: (start, end, handle) {},
+              tasks: tasks,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    testWidgets('renders correctly with tasks and window', (WidgetTester tester) async {
+      await tester.pumpWidget(buildScrubber());
+
+      await expectLater(find.byType(LegacyGanttTimelineScrubber), matchesGoldenFile('goldens/scrubber_with_tasks.png'));
+    });
+
+    testWidgets('renders correctly when fully zoomed out', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
           home: Scaffold(
             body: Center(
               child: SizedBox(
@@ -52,44 +74,16 @@ void main() {
                 child: LegacyGanttTimelineScrubber(
                   totalStartDate: totalStart,
                   totalEndDate: totalEnd,
-                  visibleStartDate: visibleStart,
-                  visibleEndDate: visibleEnd,
+                  visibleStartDate: totalStart, // Fully zoomed out
+                  visibleEndDate: totalEnd, // Fully zoomed out
                   onWindowChanged: (start, end, handle) {},
                   tasks: tasks,
                 ),
               ),
             ),
           ),
-        );
-
-    testWidgets('renders correctly with tasks and window', (WidgetTester tester) async {
-      await tester.pumpWidget(buildScrubber());
-
-      await expectLater(
-        find.byType(LegacyGanttTimelineScrubber),
-        matchesGoldenFile('goldens/scrubber_with_tasks.png'),
-      );
-    });
-
-    testWidgets('renders correctly when fully zoomed out', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: SizedBox(
-              width: 400,
-              height: 50,
-              child: LegacyGanttTimelineScrubber(
-                totalStartDate: totalStart,
-                totalEndDate: totalEnd,
-                visibleStartDate: totalStart, // Fully zoomed out
-                visibleEndDate: totalEnd, // Fully zoomed out
-                onWindowChanged: (start, end, handle) {},
-                tasks: tasks,
-              ),
-            ),
-          ),
         ),
-      ));
+      );
 
       await expectLater(find.byType(LegacyGanttTimelineScrubber), matchesGoldenFile('goldens/scrubber_zoomed_out.png'));
     });
@@ -107,28 +101,32 @@ void main() {
         conflictBarColor: Colors.black,
       );
 
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: SizedBox(
-              width: 400,
-              height: 50,
-              child: LegacyGanttTimelineScrubber(
-                totalStartDate: totalStart,
-                totalEndDate: totalEnd,
-                visibleStartDate: visibleStart,
-                visibleEndDate: visibleEnd,
-                onWindowChanged: (start, end, handle) {},
-                tasks: tasks,
-                theme: customTheme,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 400,
+                height: 50,
+                child: LegacyGanttTimelineScrubber(
+                  totalStartDate: totalStart,
+                  totalEndDate: totalEnd,
+                  visibleStartDate: visibleStart,
+                  visibleEndDate: visibleEnd,
+                  onWindowChanged: (start, end, handle) {},
+                  tasks: tasks,
+                  theme: customTheme,
+                ),
               ),
             ),
           ),
         ),
-      ));
+      );
 
       await expectLater(
-          find.byType(LegacyGanttTimelineScrubber), matchesGoldenFile('goldens/scrubber_with_custom_theme.png'));
+        find.byType(LegacyGanttTimelineScrubber),
+        matchesGoldenFile('goldens/scrubber_with_custom_theme.png'),
+      );
     });
   });
 }

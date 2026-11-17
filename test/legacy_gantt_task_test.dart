@@ -16,13 +16,7 @@ void main() {
       isSummary: false,
       isTimeRangeHighlight: false,
       isOverlapIndicator: false,
-      segments: [
-        LegacyGanttTaskSegment(
-          start: now,
-          end: now.add(const Duration(hours: 12)),
-          color: Colors.lightBlue,
-        ),
-      ],
+      segments: [LegacyGanttTaskSegment(start: now, end: now.add(const Duration(hours: 12)), color: Colors.lightBlue)],
       textColor: Colors.white,
       originalId: 'originalTask1',
     );
@@ -46,11 +40,7 @@ void main() {
     });
 
     test('copyWith creates a new instance with updated values', () {
-      final updatedTask = task.copyWith(
-        name: 'Updated Task',
-        color: Colors.red,
-        isSummary: true,
-      );
+      final updatedTask = task.copyWith(name: 'Updated Task', color: Colors.red, isSummary: true);
 
       expect(updatedTask.id, task.id); // Should remain the same
       expect(updatedTask.rowId, task.rowId); // Should remain the same
@@ -101,11 +91,7 @@ void main() {
 
   group('LegacyGanttTaskSegment', () {
     final now = DateTime.now();
-    final segment = LegacyGanttTaskSegment(
-      start: now,
-      end: now.add(const Duration(hours: 1)),
-      color: Colors.purple,
-    );
+    final segment = LegacyGanttTaskSegment(start: now, end: now.add(const Duration(hours: 1)), color: Colors.purple);
 
     test('constructor assigns all properties correctly', () {
       expect(segment.start, now);
@@ -114,10 +100,7 @@ void main() {
     });
 
     test('color can be null', () {
-      final segmentWithoutColor = LegacyGanttTaskSegment(
-        start: now,
-        end: now.add(const Duration(hours: 1)),
-      );
+      final segmentWithoutColor = LegacyGanttTaskSegment(start: now, end: now.add(const Duration(hours: 1)));
       expect(segmentWithoutColor.color, isNull);
     });
   });

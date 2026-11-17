@@ -5,10 +5,7 @@ import 'models/legacy_gantt_task.dart';
 import 'models/legacy_gantt_theme.dart';
 
 /// Defines the mode of operation for the timeline scrubber.
-enum TimelineMode {
-  dateTime,
-  lineCount,
-}
+enum TimelineMode { dateTime, lineCount }
 
 /// Indicates which part of the scrubber was interacted with to cause a change.
 enum ScrubberHandle {
@@ -128,29 +125,29 @@ class LegacyGanttTimelineScrubber extends StatefulWidget {
     this.endPadding = Duration.zero,
     this.alwaysShowFullRange = false,
     this.showResetZoomButton = true,
-  })  : assert(
-          mode == TimelineMode.dateTime
-              ? (totalStartDate != null &&
-                  totalEndDate != null &&
-                  visibleStartDate != null &&
-                  visibleEndDate != null &&
-                  true)
-              : (totalLineCount != null &&
-                  visibleStartLine != null &&
-                  visibleEndLine != null &&
-                  onLineWindowChanged != null),
-          'For TimelineMode.dateTime, totalStartDate, totalEndDate, visibleStartDate, visibleEndDate, and onWindowChanged must be provided. '
-          'For TimelineMode.lineCount, totalLineCount, visibleStartLine, visibleEndLine, and onLineWindowChanged must be provided.',
-        ),
-        assert(
-          mode == TimelineMode.dateTime
-              ? (totalLineCount == null &&
-                  visibleStartLine == null &&
-                  visibleEndLine == null &&
-                  onLineWindowChanged == null)
-              : (totalStartDate == null && totalEndDate == null && visibleStartDate == null && visibleEndDate == null),
-          'Cannot mix DateTime and lineCount properties. Provide either all DateTime-related or all lineCount-related properties.',
-        );
+  }) : assert(
+         mode == TimelineMode.dateTime
+             ? (totalStartDate != null &&
+                   totalEndDate != null &&
+                   visibleStartDate != null &&
+                   visibleEndDate != null &&
+                   true)
+             : (totalLineCount != null &&
+                   visibleStartLine != null &&
+                   visibleEndLine != null &&
+                   onLineWindowChanged != null),
+         'For TimelineMode.dateTime, totalStartDate, totalEndDate, visibleStartDate, visibleEndDate, and onWindowChanged must be provided. '
+         'For TimelineMode.lineCount, totalLineCount, visibleStartLine, visibleEndLine, and onLineWindowChanged must be provided.',
+       ),
+       assert(
+         mode == TimelineMode.dateTime
+             ? (totalLineCount == null &&
+                   visibleStartLine == null &&
+                   visibleEndLine == null &&
+                   onLineWindowChanged == null)
+             : (totalStartDate == null && totalEndDate == null && visibleStartDate == null && visibleEndDate == null),
+         'Cannot mix DateTime and lineCount properties. Provide either all DateTime-related or all lineCount-related properties.',
+       );
 
   @override
   State<LegacyGanttTimelineScrubber> createState() => _LegacyGanttTimelineScrubberState();
@@ -224,7 +221,7 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
 
     return (
       displayStart.clamp(_effectiveTotalStartValue, _effectiveTotalEndValue),
-      displayEnd.clamp(_effectiveTotalStartValue, _effectiveTotalEndValue)
+      displayEnd.clamp(_effectiveTotalStartValue, _effectiveTotalEndValue),
     );
   }
 
@@ -533,9 +530,11 @@ class _LegacyGanttTimelineScrubberState extends State<LegacyGanttTimelineScrubbe
                 color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 tooltip: 'Reset Zoom',
                 onPressed: () => widget.mode == TimelineMode.dateTime
-                    ? widget.onWindowChanged
-                        ?.call(widget.totalStartDate!.subtract(widget.startPadding),
-                            widget.totalEndDate!.add(widget.endPadding), ScrubberHandle.programmatic)
+                    ? widget.onWindowChanged?.call(
+                        widget.totalStartDate!.subtract(widget.startPadding),
+                        widget.totalEndDate!.add(widget.endPadding),
+                        ScrubberHandle.programmatic,
+                      )
                     : widget.onLineWindowChanged!(0, widget.totalLineCount!, ScrubberHandle.programmatic),
               ),
           ],
@@ -661,7 +660,8 @@ class _ScrubberPainter extends CustomPainter {
           : LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [theme.textColor.withValues(alpha: 0.16), theme.textColor.withValues(alpha: 0)]);
+              colors: [theme.textColor.withValues(alpha: 0.16), theme.textColor.withValues(alpha: 0)],
+            );
       canvas.drawRect(leftFadeRect, Paint()..shader = leftGradient.createShader(leftFadeRect));
     }
 
@@ -674,7 +674,8 @@ class _ScrubberPainter extends CustomPainter {
           : LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [theme.textColor.withValues(alpha: 0), theme.textColor.withValues(alpha: 0.16)]);
+              colors: [theme.textColor.withValues(alpha: 0), theme.textColor.withValues(alpha: 0.16)],
+            );
       canvas.drawRect(rightFadeRect, Paint()..shader = rightGradient.createShader(rightFadeRect));
     }
   }

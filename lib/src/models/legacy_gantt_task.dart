@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Signature for a function that builds a widget for a timeline cell.
-typedef CellBuilder = Widget Function(
-  BuildContext context,
-  DateTime date,
-  double cellWidth,
-  double cellHeight,
-);
+typedef CellBuilder = Widget Function(BuildContext context, DateTime date, double cellWidth, double cellHeight);
 
 /// A task to be displayed in the timeline.
 @immutable
@@ -108,27 +103,26 @@ class LegacyGanttTask {
     String? originalId,
     double? startRatio,
     double? endRatio,
-  }) =>
-      LegacyGanttTask(
-        id: id ?? this.id,
-        rowId: rowId ?? this.rowId,
-        start: start ?? this.start,
-        end: end ?? this.end,
-        startLine: startLine ?? this.startLine,
-        endLine: endLine ?? this.endLine,
-        name: name ?? this.name,
-        color: color ?? this.color,
-        stackIndex: stackIndex ?? this.stackIndex,
-        isSummary: isSummary ?? this.isSummary,
-        isTimeRangeHighlight: isTimeRangeHighlight ?? this.isTimeRangeHighlight,
-        isOverlapIndicator: isOverlapIndicator ?? this.isOverlapIndicator,
-        segments: segments ?? this.segments,
-        cellBuilder: cellBuilder ?? this.cellBuilder,
-        textColor: textColor ?? this.textColor,
-        originalId: originalId ?? this.originalId,
-        startRatio: startRatio ?? this.startRatio,
-        endRatio: endRatio ?? this.endRatio,
-      );
+  }) => LegacyGanttTask(
+    id: id ?? this.id,
+    rowId: rowId ?? this.rowId,
+    start: start ?? this.start,
+    end: end ?? this.end,
+    startLine: startLine ?? this.startLine,
+    endLine: endLine ?? this.endLine,
+    name: name ?? this.name,
+    color: color ?? this.color,
+    stackIndex: stackIndex ?? this.stackIndex,
+    isSummary: isSummary ?? this.isSummary,
+    isTimeRangeHighlight: isTimeRangeHighlight ?? this.isTimeRangeHighlight,
+    isOverlapIndicator: isOverlapIndicator ?? this.isOverlapIndicator,
+    segments: segments ?? this.segments,
+    cellBuilder: cellBuilder ?? this.cellBuilder,
+    textColor: textColor ?? this.textColor,
+    originalId: originalId ?? this.originalId,
+    startRatio: startRatio ?? this.startRatio,
+    endRatio: endRatio ?? this.endRatio,
+  );
 }
 
 /// A segment of a task.
@@ -144,9 +138,5 @@ class LegacyGanttTaskSegment {
   final Color? color;
 
   /// Creates a new [LegacyGanttTaskSegment].
-  const LegacyGanttTaskSegment({
-    required this.start,
-    required this.end,
-    this.color,
-  });
+  const LegacyGanttTaskSegment({required this.start, required this.end, this.color});
 }
