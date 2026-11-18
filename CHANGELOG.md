@@ -1,3 +1,8 @@
+## 4.0.0
+
+* **BREAKING**: Migrate Material widgets and theme types to the official `material_ui` package. Require Dart 3.13 and Flutter 3.47 or newer.
+* Package consumers must import Material symbols from `package:material_ui/material_ui.dart`.
+
 ## 3.0.0
 
 * **BREAKING**: Add line-count and vertical modes; date fields and date callbacks are nullable. Date consumers must handle null or select date-time mode. Require Dart 3.10 and Flutter 3.38 or newer.
