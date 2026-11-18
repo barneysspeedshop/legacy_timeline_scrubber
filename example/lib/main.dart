@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:legacy_timeline_scrubber/legacy_timeline_scrubber.dart';
 import 'package:provider/provider.dart';
+
 import 'timeline_viewmodel.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     create: (context) => TimelineViewModel()..init(context),
     child: MaterialApp(
       title: 'Legacy Timeline Scrubber Example',
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: ThemeData(primarySwatch: Colors.blue, visualDensity: VisualDensity.adaptivePlatformDensity),
       darkTheme: ThemeData.dark(),
       home: const MyHomePage(),

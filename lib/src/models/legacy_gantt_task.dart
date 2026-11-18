@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show immutable;
+import 'package:flutter/painting.dart' show Color;
+import 'package:flutter/widgets.dart' show BuildContext, Widget;
 
 /// Signature for a function that builds a widget for a timeline cell.
 typedef CellBuilder = Widget Function(BuildContext context, DateTime date, double cellWidth, double cellHeight);

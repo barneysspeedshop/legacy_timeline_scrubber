@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:legacy_timeline_scrubber/legacy_timeline_scrubber.dart';
 
 class TimelineViewModel extends ChangeNotifier {

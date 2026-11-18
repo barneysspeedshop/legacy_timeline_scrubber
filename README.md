@@ -32,7 +32,8 @@ To use this package, add `legacy_timeline_scrubber` as a dependency in your `pub
 
 ```yaml
 dependencies:
-  legacy_timeline_scrubber: ^1.0.0
+  legacy_timeline_scrubber: ^4.0.0
+  material_ui: ^1.11.1
 ```
 
 ## Usage
@@ -40,7 +41,7 @@ dependencies:
 Here is a simple example of how to use the `LegacyGanttTimelineScrubber` widget:
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:legacy_timeline_scrubber/legacy_timeline_scrubber.dart';
 import 'package:legacy_timeline_scrubber/src/models/legacy_gantt_task.dart';
 
@@ -118,6 +119,10 @@ void onWindowChanged(DateTime start, DateTime end, ScrubberHandle handle) {
   // ... your logic here
 }
 ```
+
+## Material UI migration
+
+Version 4.0.0 is a breaking release for Flutter 3.47 and later. It requires Dart 3.13 or newer and uses the official `material_ui: ^1.11.1` package for Material widgets and theme types. Update application imports from `package:flutter/material.dart` to `package:material_ui/material_ui.dart` before using this package. The public `LegacyGanttTheme.fromTheme` API now accepts `material_ui`'s `ThemeData` type.
 
 ## Example Project
 
